@@ -1,0 +1,23 @@
+@startuml 画面遷移図
+hide empty description
+
+[*] -> TopPage
+TopPage -> List
+List -down-> addContent
+List -down-> deleteContentComfirm
+addContent -> List
+deleteContentComfirm -> List
+
+List : ToDo
+List : Done
+addContent : ToDoを追加する
+deleteContentComfirm : ToDoの削除を確認する
+
+List -> ListImage
+
+ListImage : ToDo, Doneを画像化してOGPとして配信
+
+ListImage -> [*]
+List -> [*]
+
+@enduml
