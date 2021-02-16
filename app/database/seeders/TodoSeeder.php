@@ -17,6 +17,7 @@ class TodoSeeder extends Seeder
     public function run()
     {
         DB::table('todos')->insert([
+            'user_id' => 1,
             'done_flag' => false,
             'content' => Str::random(25),
             'created_at' => new DateTime(),
@@ -24,6 +25,7 @@ class TodoSeeder extends Seeder
         ]);
 
         DB::table('todos')->insert([
+            'user_id' => 1,
             'done_flag' => true,
             'content' => Str::random(25),
             'created_at' => new DateTime(),
@@ -31,6 +33,7 @@ class TodoSeeder extends Seeder
         ]);
 
         DB::table('todos')->insert([
+            'user_id' => 1,
             'done_flag' => false,
             'content' => Str::random(25),
             'created_at' => new DateTime(),
