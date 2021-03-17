@@ -1,0 +1,6 @@
+/.idea/*
+/docker/db/data/*
+/logs/*
+.sass-cache/
+!.gitkeep
+.DS_Store
