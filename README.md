@@ -1,4 +1,4 @@
-# GTP
+# Piqraise
 
 ## 環境について
 
@@ -18,7 +18,7 @@ Composer version 2.0.11
 
 ### リポジトリをクローン
 ```
-$ git clone git@github.com:psbss/gtp.git
+$ git clone
 ```
 
 ### Dockerコンテナの立ち上げ
@@ -35,7 +35,7 @@ $ docker exec -it laravel_app bash
   
 ### プロジェクトに移動
 ```
-# cd gtp
+# cd piqraise
 ```
 
 ### composer の利用
