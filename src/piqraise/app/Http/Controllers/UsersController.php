@@ -8,6 +8,12 @@ use App\Models\Todo;
 
 class UsersController extends Controller
 {
+    // 未認証のユーザーをログインページに移動させる
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // Todo一覧をjsonで返す
     public function index($userId)
     {
