@@ -176,6 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        // Third party
+        App\Providers\TodoServiceProvider::class,
+
     ],
 
     /*

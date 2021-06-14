@@ -23,5 +23,9 @@ Route::get('/login/auth/twitter/callback', 'Auth\AuthController@TwitterCallback'
 Route::get('/logout/auth/twitter', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/{userId}', 'UsersController@index');
+  Route::get('/{userId}', 'UsersController@index');
+});
+
+Route::group(['middleware' => ['auth']], function() {
+  Route::apiResource('/todo', 'TodoController');
 });
