@@ -18,6 +18,7 @@ class CreateTodosTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->boolean('done_flag');
             $table->string('content');
+            $table->datetime('deleted_at');
             $table->timestamps();
         });
     }
