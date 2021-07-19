@@ -24,4 +24,5 @@ Route::get('/logout/auth/twitter', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/{userId}', 'UsersController@index');
+    Route::get('/{userId}/{date}', 'TodosController@index');
 });

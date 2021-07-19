@@ -20,24 +20,24 @@ class TodoSeeder extends Seeder
             'user_id' => 1,
             'done_flag' => false,
             'content' => Str::random(25),
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
+            'created_at' => new DateTime('2021-07-01 23:01:05'),
+            'updated_at' => new DateTime('2021-07-02 23:01:05'),
         ]);
 
         DB::table('todos')->insert([
             'user_id' => 1,
             'done_flag' => true,
             'content' => Str::random(25),
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
+            'created_at' => new DateTime('2021-07-03 23:01:05'),
+            'updated_at' => new DateTime('2021-07-04 23:01:05'),
         ]);
 
         DB::table('todos')->insert([
             'user_id' => 1,
             'done_flag' => false,
             'content' => Str::random(25),
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
+            'created_at' => new DateTime('2021-07-05 23:01:05'),
+            'updated_at' => new DateTime('2021-07-06 23:01:05'),
         ]);
     }
 }
