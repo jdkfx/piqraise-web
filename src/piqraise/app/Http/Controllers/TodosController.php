@@ -40,13 +40,21 @@ class TodosController extends Controller
     // OGP画像を作成する
     public function createOgpImg()
     {
-        $testStr = '私の名前はjdkfx17です．';
+        $date = '2021/07/24のタスク';
+        $doneTask1 = '✅タスク1';
+        $doneTask2 = '✅タスク2';
+        $doneTask3 = '✅タスク3';
+        $task = '　タスク4たたたたたたたたたたたた';
+        $otherTaskCount = '他4件のタスクを見る…';
+        // $userImg = storage_path('./img/icon.jpg');
+        $userImg = '〇';
+        $userName = 'jdkfx';
+        $appName = 'PiQraise';
+        $perOfComplete = '50';
 
         $w = 640;
         $h = 360;
-        $partLength = 10;
 
-        $fontSize = 30;
         $font = storage_path('./font/NotoSansJP-Regular.otf');
 
         $image = \imagecreatetruecolor($w, $h);
@@ -56,13 +64,29 @@ class TodosController extends Controller
 
         $black = imagecolorallocate($image, 0, 0, 0);
 
-        $parts = [];
-        $length = mb_strlen($testStr);
-        for ($start = 0; $start < $length; $start += $partLength) {
-            $parts[] = mb_substr($testStr, $start, $partLength);
-        }
+        $parts = $this->createParts($date , 255);
+        $this->drawParts($image, $parts, $w, $h, 30, 50, 18, $font, $black);
 
-        $this->drawParts($image, $parts, $w, $h, $fontSize, $font, $black);
+        $parts = $this->createParts($doneTask1, 255);
+        $this->drawParts($image, $parts, $w, $h, 80, 100, 25, $font, $black);
+
+        $parts = $this->createParts($doneTask2, 255);
+        $this->drawParts($image, $parts, $w, $h, 80, 150, 25, $font, $black);
+        
+        $parts = $this->createParts($doneTask3, 255);
+        $this->drawParts($image, $parts, $w, $h, 80, 200, 25, $font, $black);
+
+        $parts = $this->createParts($task, 20);
+        $this->drawParts($image, $parts, $w, $h, 80, 250, 25, $font, $black);
+        
+        $parts = $this->createParts($otherTaskCount, 255);
+        $this->drawParts($image, $parts, $w, $h, 300, 300, 20, $font, $black);
+        
+        $parts = $this->createParts($userImg, 255);
+        $this->drawParts($image, $parts, $w, $h, 50, 330, 18, $font, $black);
+        
+        $parts = $this->createParts($userName, 255);
+        $this->drawParts($image, $parts, $w, $h, 80, 330, 15, $font, $black);
 
         ob_start();
         imagepng($image);
@@ -71,15 +95,21 @@ class TodosController extends Controller
         return response($content)->header('Content-Type', 'image/png');
     }
 
-    private function drawParts($image, $parts, $w, $h, $fontSize, $font, $color, $offset = 0)
+    private function createParts($requestStr, $partLength) : array
+    {
+        $parts = [];
+        $length = mb_strlen($requestStr);
+        $parts[] = mb_strimwidth($requestStr, 0, $partLength, '…', 'UTF-8');
+        return $parts;
+    }
+
+    private function drawParts($image, $parts, $w, $h, $x, $y, $fontSize, $font, $color, $offset = 0)
     {
         foreach ($parts as $i => $part) {
             $box = \imagettfbbox($fontSize, 0, $font, $part);
             $boxWidth = $box[4] - $box[6];
             $boxHeight = $box[1] - $box[7];
 
-            $x = ($w - $boxWidth) / 2;
-            $y = $h / 2 + $boxHeight / 2 - $boxHeight * count($parts) * 0.5 + $boxHeight * $i;
             \imagettftext($image, $fontSize, 0, $x + $offset, $y + $offset, $color, $font, $part);
         }
     }
