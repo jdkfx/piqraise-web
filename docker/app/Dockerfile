@@ -14,9 +14,21 @@ git \
 zip \
 unzip \
 vim \
+wget \
+libmcrypt-dev \
 libpng-dev \
 libpq-dev \
+libjpeg-dev \
+libwebp-dev \
+libxpm-dev \
+libmagick++-dev \
+libfreetype6-dev \
+libmagickwand-dev \
+libjpeg62-turbo-dev \
 && docker-php-ext-install pdo_mysql
+
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+RUN docker-php-ext-install -j$(nproc) gd
 
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
