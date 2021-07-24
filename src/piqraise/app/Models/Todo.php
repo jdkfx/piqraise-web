@@ -8,17 +8,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Todo extends Model
 {
+    use HasFactory;
     /**
      * モデルに関連付けるテーブル
      *
      * @var string
      */
-    protected $table = 'todos';
+    protected string $table = 'todos';
 
-    protected $fillable = ['done_flag', 'content'];
+    protected array $fillable = ['done_flag', 'content', 'target_date'];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 }
