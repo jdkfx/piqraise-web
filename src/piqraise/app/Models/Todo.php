@@ -14,9 +14,9 @@ class Todo extends Model
      *
      * @var string
      */
-    protected string $table = 'todos';
+    protected $table = 'todos';
 
-    protected array $fillable = ['done_flag', 'content', 'target_date'];
+    protected $fillable = ['done_flag', 'content', 'target_date'];
 
     public function user()
     {
