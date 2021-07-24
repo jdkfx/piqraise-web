@@ -13,7 +13,7 @@ class TodosController extends Controller
     // 未認証のユーザーをログインページに移動させる
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     // 指定した日付のTodo一覧をjsonで返す
