@@ -18,7 +18,7 @@ class Todo extends Model
 
     protected array $fillable = ['user_id', 'done_flag', 'content', 'target_date'];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

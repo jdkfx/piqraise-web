@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoCreateRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,9 +13,8 @@ class TodosController extends Controller
     // 未認証のユーザーをログインページに移動させる
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
-
 
     public function create() {
         return view('pages.todo.create');
@@ -25,7 +23,8 @@ class TodosController extends Controller
     public function store(TodoCreateRequest $request)
     {
         $todo = Todo::create([
-            'user_id' => Auth::id(),
+            // 'user_id' => Auth::id(),
+            'user_id' => 1,
             'done_flag' => false,
             'public_flag' => $request->public_flag,
             'content' => $request->content,
@@ -36,14 +35,16 @@ class TodosController extends Controller
 
     public function today(): \Illuminate\Http\JsonResponse
     {
-        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
+        // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
+        $todos = Todo::where('user_id', 1)->whereDate('target_date', Carbon::today())->get();
         return response()->json($todos);
     }
 
     // TODO: perry 後でserviceらへんでまとめる
     public function get($date): \Illuminate\Http\JsonResponse
     {
-        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', $date)->get();
+        // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', $date)->get();
+        $todos = Todo::where('user_id', 1)->whereDate('target_date', $date)->get();
         return response()->json($todos);
     }
 
