@@ -24,7 +24,6 @@ class TodoCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'public_flag' => 'required',
             'content' => 'required|string|min:4',
             'date' => 'required|date',
         ];

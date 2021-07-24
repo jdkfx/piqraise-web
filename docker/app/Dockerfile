@@ -5,8 +5,9 @@ ADD 000-default.conf /etc/apache2/sites-enabled/
 
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs npm 
+RUN npm install n -g
+RUN n 12.14
 
 RUN apt-get update \
 && apt-get install -y \
