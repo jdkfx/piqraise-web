@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-Route::get('/info', function () {
-    return phpinfo();
-});
+Route::get('/ogp', 'TodosController@createOgpImg');
 
 // Auth Twitter
 Route::get('/login/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('login');
