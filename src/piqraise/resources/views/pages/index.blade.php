@@ -7,6 +7,6 @@
         Login中
     @endauth
     @guest
-        <a href="{{ route('login') }}">TwitterでLogin</a>
+        <a href="{{ route('login') }}">Twitterでログイン</a>
     @endguest
 @endsection

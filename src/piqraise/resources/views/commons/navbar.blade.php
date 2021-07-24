@@ -13,14 +13,14 @@
       <div class="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <!-- Profile dropdown -->
         <div class="ml-2">
-          <a href="">
+          <a href="{{ route('login') }}">
             <div class="px-4 py-1 rounded-lg bg-white">
               <p class="text-green-900">Login</p>
             </div>
           </a>
         </div>
         <div class="ml-2">
-          <a href="">
+          <a href="{{ route('signup') }}">
             <div class="px-4 py-1 rounded-lg bg-white">
               <p class="text-green-900">Singup</p>
             </div>
