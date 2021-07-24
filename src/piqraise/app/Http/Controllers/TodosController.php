@@ -37,6 +37,12 @@ class TodosController extends Controller
         return response()->json($todos);
     }
 
+    public function getPublic($userId, $date)
+    {
+        $todos = Todo::where('user_id', $userId)->whereDate('target_date', $date)->where('public_flag', true)->get();
+        return response()->json($todos);
+    }
+
     // OGP画像を作成する
     public function createOgpImg()
     {
