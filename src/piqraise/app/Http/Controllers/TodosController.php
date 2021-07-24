@@ -54,6 +54,9 @@ class TodosController extends Controller
 
     public function getPublic($userId, $date)
     {
+        if (Auth::id() == $userId) {
+            return redirect(route('todo.date', $date));
+        }
         $todos = Todo::where('user_id', $userId)->whereDate('target_date', $date)->where('public_flag', true)->get();
         $date = date_parse($date);
         $year = $date['year'];
