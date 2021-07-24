@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Define color
+$piq-green-default: "#77B255";
+$piq-green-white: '#F4F9F4';
+$piq-green-light: '#A7D7C5';
+$piq-green-dark: '#436530';
+
+bg {
+  &-piq {
+    &-green {
+      background-color: $piq-green-default;
+
+      &-white {
+        background-color: $piq-green-white;
+      }
+      &-light {
+        background-color: $piq-green-light;
+      }
+      &-dark {
+        background-color: $piq-green-dark;
+      }
+    }
+  }
+}
