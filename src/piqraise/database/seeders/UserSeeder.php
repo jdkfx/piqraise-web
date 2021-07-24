@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'name',
-            'email' => 'email@email.com',
+            'email' => str::random(5) . '@gmail.com',
             'created_at' => new DateTime('2021-07-01 23:01:05'),
             'updated_at' => new DateTime('2021-07-02 23:01:05'),
         ]);

@@ -46,5 +46,65 @@ class TodoSeeder extends Seeder
             'created_at' => new DateTime('2021-07-05 23:01:05'),
             'updated_at' => new DateTime('2021-07-06 23:01:05'),
         ]);
+
+        DB::table('todos')->insert([
+            'user_id' => 1,
+            'done_flag' => false,
+            'public_flag' => false,
+            'content' => Str::random(25),
+            'target_date' => Carbon::tomorrow(),
+            'created_at' => new DateTime('2021-07-01 23:01:05'),
+            'updated_at' => new DateTime('2021-07-02 23:01:05'),
+        ]);
+
+        DB::table('todos')->insert([
+            'user_id' => 1,
+            'done_flag' => true,
+            'public_flag' => true,
+            'content' => Str::random(25),
+            'target_date' => Carbon::tomorrow(),
+            'created_at' => new DateTime('2021-07-03 23:01:05'),
+            'updated_at' => new DateTime('2021-07-04 23:01:05'),
+        ]);
+
+        DB::table('todos')->insert([
+            'user_id' => 1,
+            'done_flag' => false,
+            'public_flag' => true,
+            'content' => Str::random(25),
+            'target_date' => Carbon::tomorrow(),
+            'created_at' => new DateTime('2021-07-05 23:01:05'),
+            'updated_at' => new DateTime('2021-07-06 23:01:05'),
+        ]);
+
+        DB::table('todos')->insert([
+            'user_id' => 1,
+            'done_flag' => false,
+            'public_flag' => false,
+            'content' => Str::random(25),
+            'target_date' => Carbon::yesterday(),
+            'created_at' => new DateTime('2021-07-01 23:01:05'),
+            'updated_at' => new DateTime('2021-07-02 23:01:05'),
+        ]);
+
+        DB::table('todos')->insert([
+            'user_id' => 1,
+            'done_flag' => true,
+            'public_flag' => true,
+            'content' => Str::random(25),
+            'target_date' => Carbon::yesterday(),
+            'created_at' => new DateTime('2021-07-03 23:01:05'),
+            'updated_at' => new DateTime('2021-07-04 23:01:05'),
+        ]);
+
+        DB::table('todos')->insert([
+            'user_id' => 1,
+            'done_flag' => false,
+            'public_flag' => true,
+            'content' => Str::random(25),
+            'target_date' => Carbon::yesterday(),
+            'created_at' => new DateTime('2021-07-05 23:01:05'),
+            'updated_at' => new DateTime('2021-07-06 23:01:05'),
+        ]);
     }
 }
