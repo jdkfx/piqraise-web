@@ -21,5 +21,9 @@
         <main>
             @yield('content')
         </main>
+
+        <footer>
+            @include('commons.footer')
+        </footer>
     </body>
 </html>
