@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
+Route::get('/info', function () {
+    return phpinfo();
+});
+
 // Auth Twitter
 Route::get('/login/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('login');
 Route::get('/login/auth/twitter/callback', 'Auth\AuthController@TwitterCallback');
