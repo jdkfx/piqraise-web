@@ -41,11 +41,15 @@ class TodosController extends Controller
     }
 
     // TODO: perry 後でserviceらへんでまとめる
-    public function get($date): \Illuminate\Http\JsonResponse
+    public function get($date)
     {
         // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', $date)->get();
         $todos = Todo::where('user_id', 1)->whereDate('target_date', $date)->get();
-        return response()->json($todos);
+        $date = date_parse($date);
+        $year = $date['year'];
+        $month = $date['month'];
+        $day = $date['day'];
+        return view('pages.todo.get', compact('todos', 'year', 'month', 'day'));
     }
 
     public function getPublic($userId, $date): \Illuminate\Http\JsonResponse
