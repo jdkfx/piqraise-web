@@ -28,6 +28,18 @@
                                 {!! Form::close() !!}
                             @endif
                             <br>
+                            {{ $todo->done_flag }}
+                        <!-- on / off の切り替えボタンでvueで切り替えたい(さすがにここで画面遷移するのだるい) -->
+                            @if ($todo->done_flag)
+                                {!! Form::open(['route' => ['todo.updateDoneFlagFalse', $todo->id]]) !!}
+                                {{ Form::submit('実行中にする', ['class' => 'back']) }}
+                                {!! Form::close() !!}
+                            @else
+                                {!! Form::open(['route' => ['todo.updateDoneFlagTrue', $todo->id]]) !!}
+                                {{ Form::submit('完了済みにする', ['class' => 'back']) }}
+                                {!! Form::close() !!}
+                            @endif
+                            <br>
                         @endforeach
                     </div>
                 </div>
