@@ -30,3 +30,4 @@ Route::get('/ogp', 'TodosController@createOgpImg');
 //});
 Route::get('/today', 'TodosController@today');
 Route::get('/{date}', 'TodosController@get');
+Route::get('/{userId}/{date}', 'TodosController@getPublic');

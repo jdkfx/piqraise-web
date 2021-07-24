@@ -17,6 +17,7 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->boolean('done_flag')->default(false);
+            $table->boolean('public_flag')->default(false);
             $table->string('content')->nullable();
             $table->date("target_date");
             $table->timestamps();
