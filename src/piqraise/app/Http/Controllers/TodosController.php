@@ -24,9 +24,16 @@ class TodosController extends Controller
         return response()->json($todos);
     }
 
-    public function today()
+    public function today(): \Illuminate\Http\JsonResponse
     {
         $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
+        return response()->json($todos);
+    }
+
+    // TODO: perry 後でserviceらへんでまとめる
+    public function get($date): \Illuminate\Http\JsonResponse
+    {
+        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', $date)->get();
         return response()->json($todos);
     }
 
