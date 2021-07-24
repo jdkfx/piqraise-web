@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -20,6 +21,7 @@ class TodoSeeder extends Seeder
             'user_id' => 1,
             'done_flag' => false,
             'content' => Str::random(25),
+            'target_date' => Carbon::today(),
             'created_at' => new DateTime('2021-07-01 23:01:05'),
             'updated_at' => new DateTime('2021-07-02 23:01:05'),
         ]);
@@ -28,6 +30,7 @@ class TodoSeeder extends Seeder
             'user_id' => 1,
             'done_flag' => true,
             'content' => Str::random(25),
+            'target_date' => Carbon::today(),
             'created_at' => new DateTime('2021-07-03 23:01:05'),
             'updated_at' => new DateTime('2021-07-04 23:01:05'),
         ]);
@@ -36,6 +39,7 @@ class TodoSeeder extends Seeder
             'user_id' => 1,
             'done_flag' => false,
             'content' => Str::random(25),
+            'target_date' => Carbon::today(),
             'created_at' => new DateTime('2021-07-05 23:01:05'),
             'updated_at' => new DateTime('2021-07-06 23:01:05'),
         ]);

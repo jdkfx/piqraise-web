@@ -29,3 +29,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/{userId}/{date}', 'TodosController@index');
 });
 Route::get('/today', 'TodosController@today');
+Route::get('/{date}', 'TodosController@get');
