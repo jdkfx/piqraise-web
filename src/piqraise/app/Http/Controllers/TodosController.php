@@ -96,6 +96,18 @@ class TodosController extends Controller
     // OGP画像を作成する
     public function createOgpImg()
     {
+        $date = '2021/07/24のタスク';
+        $doneTask1 = '✅タスク1';
+        $doneTask2 = '✅タスク2';
+        $doneTask3 = '✅タスク3';
+        $task = '　タスク4たたたたたたたたたたたた';
+        $otherTaskCount = '他4件のタスクを見る…';
+        // $userImg = storage_path('./img/icon.jpg');
+        $userImg = '〇';
+        $userName = 'jdkfx';
+        $appName = 'PiQraise';
+        $perOfComplete = '50';
+
         $w = 640;
         $h = 360;
 
@@ -108,9 +120,12 @@ class TodosController extends Controller
 
         $black = imagecolorallocate($image, 0, 0, 0);
 
-        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
+        $parts = $this->createParts($date , 255);
+        $this->drawParts($image, $parts, $w, $h, 30, 50, 18, $font, $black);
 
-<<<<<<< Updated upstream
+        $parts = $this->createParts($doneTask1, 255);
+        $this->drawParts($image, $parts, $w, $h, 80, 100, 25, $font, $black);
+
         $parts = $this->createParts($doneTask2, 255);
         $this->drawParts($image, $parts, $w, $h, 80, 150, 25, $font, $black);
 
@@ -126,48 +141,8 @@ class TodosController extends Controller
         $parts = $this->createParts($userImg, 255);
         $this->drawParts($image, $parts, $w, $h, 50, 330, 18, $font, $black);
 
-=======
-        $date = Carbon::today()->format('Y/m/d') . 'のタスク';
-        $parts = $this->createParts($date , 18);
-        $this->drawParts($image, $parts, $w, $h, 30, 50, 18, $font, $black);
-
-        $i = 0;
-        $y = 100;
-        foreach ($todos as $todo) {
-            if ($i > 3) {
-                $otherTodosCount = $todos->count() - 4;
-                $otherTodo = '他' . $otherTodosCount . '件のタスクを見る…';
-                $parts = $this->createParts($otherTodo, 20);
-                $this->drawParts($image, $parts, $w, $h, 300, 290, 20, $font, $black);
-                break;
-            }
-
-            if ($todo->done_flag == true) {
-                $doneTask = $todo;
-                $parts = $this->createParts($doneTask->content, 20);
-                $this->drawParts($image, $parts, $w, $h, 80, $y, 25, $font, $black);
-                $y += 50;
-            } else {
-                $doingTask = $todo;
-                $parts = $this->createParts($doingTask->content, 20);
-                $this->drawParts($image, $parts, $w, $h, 80, $y, 25, $font, $black);
-                $y += 50;
-            }
-
-            $i++;
-        }
-        
-        // Twitterアイコンを取り出す
-        // $parts = $this->createParts($userImg, 255);
-        // $this->drawParts($image, $parts, $w, $h, 50, 330, 18, $font, $black);
-        
-        $userName = Auth::user()->name;
->>>>>>> Stashed changes
         $parts = $this->createParts($userName, 255);
         $this->drawParts($image, $parts, $w, $h, 80, 330, 15, $font, $black);
-        
-        // パーセンテージを表示させる
-        // $perOfComplete = '50';
 
         ob_start();
         imagepng($image);
