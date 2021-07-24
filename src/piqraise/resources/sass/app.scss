@@ -26,6 +26,10 @@ $piq-green-dark: #436530;
   }
 }
 
+.flex-bottom {
+  flex: 1 0 auto;
+}
+
 .toggle-checkbox {
   &:checked {
     @apply right-0 border-green-800;
