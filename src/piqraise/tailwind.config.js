@@ -7,16 +7,7 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        'piq-green': {
-          white: '#F4F9F4',
-          light: '#A7D7C5',
-          DEFAULT: '#77B255',
-          dark: '#436530',
-        },
-      },
-    },
+    extend: {},
   },
   variants: {
     extend: {},
