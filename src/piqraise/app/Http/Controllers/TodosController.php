@@ -52,10 +52,14 @@ class TodosController extends Controller
         return view('pages.todo.get', compact('todos', 'year', 'month', 'day'));
     }
 
-    public function getPublic($userId, $date): \Illuminate\Http\JsonResponse
+    public function getPublic($userId, $date)
     {
         $todos = Todo::where('user_id', $userId)->whereDate('target_date', $date)->where('public_flag', true)->get();
-        return response()->json($todos);
+        $date = date_parse($date);
+        $year = $date['year'];
+        $month = $date['month'];
+        $day = $date['day'];
+        return view('pages.todo.public', compact('todos', 'year', 'month', 'day'));
     }
 
     // OGP画像を作成する
