@@ -5,7 +5,9 @@ ADD 000-default.conf /etc/apache2/sites-enabled/
 
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
-RUN apt-get install -y nodejs npm 
+RUN apt update
+RUN apt install -y nodejs
+RUN apt install -y npm
 RUN npm install n -g
 RUN n 12.14
 
