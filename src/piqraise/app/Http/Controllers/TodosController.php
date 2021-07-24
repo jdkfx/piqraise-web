@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Todo;
+use Illuminate\Support\Facades\Auth;
 
 class TodosController extends Controller
 {
@@ -19,6 +21,12 @@ class TodosController extends Controller
     {
         $user = User::where('name', $userId)->first();
         $todos = Todo::where('user_id', $user->id)->whereDate('created_at', '=', $date)->get();
+        return response()->json($todos);
+    }
+
+    public function today()
+    {
+        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
         return response()->json($todos);
     }
 

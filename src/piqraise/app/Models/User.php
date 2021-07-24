@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -17,7 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
+    protected array $fillable = [
         'name',
         'email',
         'password',
@@ -29,7 +27,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
+    protected array $hidden = [
         'password',
         'remember_token',
     ];
@@ -39,12 +37,12 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
+    protected array $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function todos()
+    public function todos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany('App\Models\Todo');
+        return $this->hasMany(Todo::class);
     }
 }
