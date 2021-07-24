@@ -1,48 +1,64 @@
 @extends('layouts.app')
-
-@section('title', 'Home')
+@section('title', 'YYYYMMDDのタスク')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h1>今日のTODO</h1>
+    <div class="max-w-2xl mx-auto px-2 sm:px-4">
+        <div class="my-12">
+            <div class="my-4">
+                <h1 class="text-xl">今日のタスク</h1>
+            </div>
+
+            <div class="p-4">
+                <table class="table-fixed w-full">
+                    <thead>
+                        <tr>
+                            <th class="w-1/6"></th>
+                            <th class="w-4/6"></th>
+                            <th class="w-1/6 text-right">公開状態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @foreach ($todos as $todo)
-                            内容
-                            <br>
-                            {{ $todo->content }}
-                            <br>
-                            publicflagは1なら表示
-                            <br>
-                            {{ $todo->public_flag }}
-                            <!-- on / off の切り替えボタンでvueで切り替えたい(さすがにここで画面遷移するのだるい) -->
-                            @if ($todo->public_flag)
-                                {!! Form::open(['route' => ['todo.updatePublicFlagFalse', $todo->id]]) !!}
-                                {{ Form::submit('非公開にする', ['class' => 'back']) }}
-                                {!! Form::close() !!}
-                            @else
-                                {!! Form::open(['route' => ['todo.updatePublicFlagTrue', $todo->id]]) !!}
-                                {{ Form::submit('公開する', ['class' => 'back']) }}
-                                {!! Form::close() !!}
-                            @endif
-                            <br>
-                            {{ $todo->done_flag }}
-                        <!-- on / off の切り替えボタンでvueで切り替えたい(さすがにここで画面遷移するのだるい) -->
-                            @if ($todo->done_flag)
-                                {!! Form::open(['route' => ['todo.updateDoneFlagFalse', $todo->id]]) !!}
-                                {{ Form::submit('実行中にする', ['class' => 'back']) }}
-                                {!! Form::close() !!}
-                            @else
-                                {!! Form::open(['route' => ['todo.updateDoneFlagTrue', $todo->id]]) !!}
-                                {{ Form::submit('完了済みにする', ['class' => 'back']) }}
-                                {!! Form::close() !!}
-                            @endif
-                            <br>
+                        <tr>
+                            <td class="pb-4">
+                                @if ($todo->done_flag)
+                                    {!! Form::open(['route' => ['todo.updateDoneFlagFalse', $todo->id]]) !!}
+                                        <button type="submit" class="flex-shrink-0 text-xl mr-5">☑</button>
+                                    {!! Form::close() !!}
+                                @else
+                                    {!! Form::open(['route' => ['todo.updateDoneFlagTrue', $todo->id]]) !!}
+                                        <button type="submit" class="flex-shrink-0 text-xl mr-5">☐</button>
+                                    {!! Form::close() !!}
+                                @endif
+                            </td>
+                            <td class="pb-4">
+                                @if ($todo->done_flag)
+                                    <p class="line-through text-xl break-words">{{ $todo->content }}</p>
+                                @else
+                                    <p class="text-xl break-words">{{ $todo->content }}</p>
+                                @endif
+                            </td>
+                            <td class="pb-4 flex justify justify-end">
+                                @if ($todo->public_flag)
+                                    {!! Form::open(['route' => ['todo.updatePublicFlagFalse', $todo->id]]) !!}
+                                        <div class="flex-shrink-0 relative inline-block w-11 mr-2 align-middle select-none transition duration-200 ease-in">
+                                            <input type="checkbox" name="public_flag" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 appearance-none cursor-pointer">
+                                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                        </div>
+                                    {!! Form::close() !!}
+                                @else
+                                    {!! Form::open(['route' => ['todo.updatePublicFlagTrue', $todo->id]]) !!}
+                                        <div class="flex-shrink-0 relative inline-block w-11 mr-2 align-middle select-none transition duration-200 ease-in">
+                                            <input type="checkbox" name="public_flag" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 appearance-none cursor-pointer">
+                                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                        </div>
+                                    {!! Form::close() !!}
+                                @endif
+                            </td>
+                        </tr>
                         @endforeach
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

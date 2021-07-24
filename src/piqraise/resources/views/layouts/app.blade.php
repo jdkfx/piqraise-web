@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,12 +13,12 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
 
-    <body>
+    <body class="h-full flex flex-col">
         <header>
             @include('commons.navbar')
         </header>
 
-        <main>
+        <main class="block flex-bottom">
             @yield('content')
         </main>
 
