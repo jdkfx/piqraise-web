@@ -17,6 +17,16 @@
                             publicflagは1なら表示
                             <br>
                             {{ $todo->public_flag }}
+                            <!-- on / off の切り替えボタンでvueで切り替えたい(さすがにここで画面遷移するのだるい) -->
+                            @if ($todo->public_flag)
+                                {!! Form::open(['route' => ['todo.updatePublicFlagFalse', $todo->id]]) !!}
+                                {{ Form::submit('非公開にする', ['class' => 'back']) }}
+                                {!! Form::close() !!}
+                            @else
+                                {!! Form::open(['route' => ['todo.updatePublicFlagTrue', $todo->id]]) !!}
+                                {{ Form::submit('公開する', ['class' => 'back']) }}
+                                {!! Form::close() !!}
+                            @endif
                             <br>
                         @endforeach
                     </div>
