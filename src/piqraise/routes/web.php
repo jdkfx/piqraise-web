@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.index');
-});
+})->name('index');
 
 Route::get('/ogp', 'TodosController@createOgpImg');
 
@@ -25,9 +25,9 @@ Route::get('/login/auth/twitter/callback', 'Auth\AuthController@TwitterCallback'
 Route::get('/logout/auth/twitter', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/{userId}', 'UsersController@index');
-    Route::get('/{userId}/{date}', 'TodosController@index');
     Route::get('/today', 'TodosController@today');
     Route::get('/{date}', 'TodosController@get');
     Route::get('/{userId}/{date}', 'TodosController@getPublic');
+    Route::get('/todo', 'TodosController@create');
+    Route::post('/todo', 'TodosController@store')->name('todo.create');
 });
