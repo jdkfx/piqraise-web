@@ -33,11 +33,11 @@ class TodosController extends Controller
         return redirect(route('index'))->with('success', __('created'));
     }
 
-    public function today(): \Illuminate\Http\JsonResponse
+    public function today()
     {
         // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
         $todos = Todo::where('user_id', 1)->whereDate('target_date', Carbon::today())->get();
-        return response()->json($todos);
+        return view('pages.todo.today', compact('todos'));
     }
 
     // TODO: perry 後でserviceらへんでまとめる
