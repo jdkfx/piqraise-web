@@ -13,12 +13,4 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
     }
-
-    // Todo一覧をjsonで返す
-    public function index($userId)
-    {
-        $user = User::where('name', $userId)->first();
-        $todos = Todo::where('user_id', $user->id)->get();
-        return response()->json($todos);
-    }
 }

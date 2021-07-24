@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoCreateRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,12 +17,21 @@ class TodosController extends Controller
         $this->middleware('auth');
     }
 
-    // 指定した日付のTodo一覧をjsonで返す
-    public function index($userId, $date)
+
+    public function create() {
+        return view('pages.todo.create');
+    }
+
+    public function store(TodoCreateRequest $request)
     {
-        $user = User::where('name', $userId)->first();
-        $todos = Todo::where('user_id', $user->id)->whereDate('created_at', '=', $date)->get();
-        return response()->json($todos);
+        $todo = Todo::create([
+            'user_id' => Auth::id(),
+            'done_flag' => false,
+            'public_flag' => $request->public_flag,
+            'content' => $request->content,
+            'target_date' => $request->date,
+        ]);
+        return redirect(route('index'))->with('success', __('created'));
     }
 
     public function today(): \Illuminate\Http\JsonResponse
@@ -78,19 +88,19 @@ class TodosController extends Controller
 
         $parts = $this->createParts($doneTask2, 255);
         $this->drawParts($image, $parts, $w, $h, 80, 150, 25, $font, $black);
-        
+
         $parts = $this->createParts($doneTask3, 255);
         $this->drawParts($image, $parts, $w, $h, 80, 200, 25, $font, $black);
 
         $parts = $this->createParts($task, 20);
         $this->drawParts($image, $parts, $w, $h, 80, 250, 25, $font, $black);
-        
+
         $parts = $this->createParts($otherTaskCount, 255);
         $this->drawParts($image, $parts, $w, $h, 300, 300, 20, $font, $black);
-        
+
         $parts = $this->createParts($userImg, 255);
         $this->drawParts($image, $parts, $w, $h, 50, 330, 18, $font, $black);
-        
+
         $parts = $this->createParts($userName, 255);
         $this->drawParts($image, $parts, $w, $h, 80, 330, 15, $font, $black);
 
