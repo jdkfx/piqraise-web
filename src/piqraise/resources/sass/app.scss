@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 // Define color
-$piq-green-default: "#77B255";
-$piq-green-white: '#F4F9F4';
-$piq-green-light: '#A7D7C5';
-$piq-green-dark: '#436530';
+$piq-green-default: #77B255;
+$piq-green-white: #F4F9F4;
+$piq-green-light: #A7D7C5;
+$piq-green-dark: #436530;
 
-bg {
+.bg {
   &-piq {
     &-green {
       background-color: $piq-green-default;
@@ -22,6 +22,19 @@ bg {
       &-dark {
         background-color: $piq-green-dark;
       }
+    }
+  }
+}
+
+.toggle-checkbox {
+  &:checked {
+    @apply right-0 border-green-800;
+    right: 0;
+    border-color: $piq-green-dark;
+
+    + .toggle-label {
+      @apply bg-green-800;
+      background-color: $piq-green-dark;
     }
   }
 }
