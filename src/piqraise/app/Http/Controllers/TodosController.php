@@ -65,6 +65,20 @@ class TodosController extends Controller
         return view('pages.todo.public', compact('todos', 'year', 'month', 'day'));
     }
 
+    public function updatePublicFlagTrue($id)
+    {
+        // Todo::where('user_id', Auth::id())->where('id', $id)->update(['public_flag' => true]);
+        Todo::where('user_id', 1)->where('id', $id)->update(['public_flag' => true]);
+        return redirect()->back();
+    }
+
+    public function updatePublicFlagFalse($id)
+    {
+        // Todo::where('user_id', Auth::id())->where('id', $id)->update(['public_flag' => false]);
+        Todo::where('user_id', 1)->where('id', $id)->update(['public_flag' => false]);
+        return redirect()->back();
+    }
+
     // OGP画像を作成する
     public function createOgpImg()
     {

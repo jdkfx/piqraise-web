@@ -28,12 +28,16 @@ Route::get('/login/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('
 // Route::group(['middleware' => ['auth']], function () {
 //     Route::get('/today', 'TodosController@today');
 //     Route::get('/{date}', 'TodosController@get');
-//     Route::get('/{userId}/{date}', 'TodosController@getPublic');
 //     Route::get('/todo', 'TodosController@create');
 //     Route::post('/todo', 'TodosController@store')->name('todo.create');
+//     Route::post('/{id}/public', 'TodosController@updatePublicFlagTrue');
+//     Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse');
 // });
 Route::get('/today', 'TodosController@today');
 Route::get('/{date}', 'TodosController@get');
-Route::get('/{userId}/{date}', 'TodosController@getPublic');
 Route::get('/todo', 'TodosController@create');
 Route::post('/todo', 'TodosController@store')->name('todo.create');
+Route::post('/{id}/public', 'TodosController@updatePublicFlagTrue')->name('todo.updatePublicFlagTrue');
+Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse')->name('todo.updatePublicFlagFalse');
+
+Route::get('/{userId}/{date}', 'TodosController@getPublic');
