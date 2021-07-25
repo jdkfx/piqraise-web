@@ -24,9 +24,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/{date}', 'TodosController@get');
     Route::get('/todo', 'TodosController@create');
     Route::post('/todo', 'TodosController@store')->name('todo.create');
+    Route::post('/{id}/edit', 'TodosController@edit')->name('todo.edit');
     Route::post('/{id}/delete', 'TodosController@delete')->name('todo.delete');
-    Route::post('/{id}/public', 'TodosController@updatePublicFlagTrue');
-    Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse');
+    Route::post('/{id}/public', 'TodosController@updatePublicFlagTrue')->name('todo.updatePublicFlagTrue');
+    Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse')->name('todo.updatePublicFlagFalse');
     Route::post('/{id}/done', 'TodosController@updateDoneFlagTrue')->name('todo.updateDoneFlagTrue');
     Route::post('/{id}/doing', 'TodosController@updateDoneFlagFalse')->name('todo.updateDoneFlagFalse');
     Route::get('/ogp', 'OgpController@createOgpImg');
