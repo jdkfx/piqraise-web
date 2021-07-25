@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'YYYYMMDDのタスク')
+@section('title', '今日のタスク')
 
 @section('content')
     <div class="max-w-2xl mx-auto px-2 sm:px-4">
@@ -7,6 +7,18 @@
             <div class="my-4">
                 <h1 class="text-xl">今日のタスク</h1>
             </div>
+
+            <section>
+                <a href="#" class="btn_02_a"><span>昨日のタスク</span></a>
+            </section>
+            
+            <section>
+                <a href="#" class="btn_02_a"><span>明日のタスク</span></a>
+            </section>
+
+            <section>
+                <a href="#" class="btn_02_a"><span>タスクの新規作成</span></a>
+            </section>
 
             <div class="p-4">
                 <table class="table-fixed w-full">
