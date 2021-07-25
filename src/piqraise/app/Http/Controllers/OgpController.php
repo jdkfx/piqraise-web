@@ -27,8 +27,7 @@ class OgpController extends Controller
 
         $black = imagecolorallocate($image, 0, 0, 0);
 
-        // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
-        $todos = Todo::where('user_id', 1)->whereDate('target_date', Carbon::today())->get();
+        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
 
         $date = Carbon::today()->format('Y/m/d') . 'のタスク';
         $parts = $this->createParts($date , 18);

@@ -11,6 +11,8 @@
 
         <!-- Tailwind CSS -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        @yield('addtionalMeta')
     </head>
 
     <body class="h-full flex flex-col">

@@ -25,7 +25,7 @@ Route::get('/logout/auth/twitter', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/today', 'TodosController@today');
-    Route::get('/{date}', 'TodosController@get');
+    Route::get('/{date}', 'TodosController@get')->name('todo.date');
     Route::get('/todo', 'TodosController@create');
     Route::post('/todo', 'TodosController@store')->name('todo.create');
     Route::post('/{id}/edit', 'TodosController@edit')->name('todo.edit');
@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse')->name('todo.updatePublicFlagFalse');
     Route::post('/{id}/done', 'TodosController@updateDoneFlagTrue')->name('todo.updateDoneFlagTrue');
     Route::post('/{id}/doing', 'TodosController@updateDoneFlagFalse')->name('todo.updateDoneFlagFalse');
-    Route::get('/ogp', 'OgpController@createOgpImg');
+    Route::get('/todo/{userId}/{date}/share.png', 'OgpController@createOgpImg')->name('shareImg');
 });
 
 Route::get('/{userId}/{date}', 'TodosController@getPublic');

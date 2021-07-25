@@ -10,6 +10,10 @@
                     <div class="panel-heading">
                         <h1>{{ $year }}年{{ $month }}月{{ $day }}日のTODO</h1>
                         @foreach ($todos as $todo)
+                            @php
+                                $userId = $todo->user_id;
+                                $day = $todo->target_date;
+                            @endphp
                             内容
                             <br>
                             {{ $todo->content }}
@@ -24,4 +28,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('additionalMeta')
+<meta property="og:image" content="{{ config('app.url') }}/todo/{{ $userId }}/{{ $day }}/share.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="{{ config('app.url') }}/todo/{{ $userId }}/{{ $day }}/share.png">
 @endsection
