@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('pages.index');
 })->name('index');
 
-Route::get('/ogp', 'TodosController@createOgpImg');
+Route::get('/ogp', 'OgpController@createOgpImg');
 
 // Auth Twitter
 Route::get('/signup/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('signup');
