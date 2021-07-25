@@ -4,31 +4,19 @@
 @section('content')
     <div class="max-w-2xl mx-auto px-2 sm:px-4">
         <div class="my-12">
-            <div class="my-4">
+            <div class="mb-2">
                 <h1 class="text-xl">今日のタスク</h1>
             </div>
 
-            <section>
-                <a href="#" class="btn_02_a"><span>昨日のタスク</span></a>
-            </section>
-            
-            <section>
-                <a href="#" class="btn_02_a"><span>明日のタスク</span></a>
-            </section>
-
-            <section>
-                <a href="#" class="btn_02_a"><span>タスクの新規作成</span></a>
-            </section>
-
-            <div class="p-4">
+            <div class="px-4 mb-4">
                 <table class="table-fixed w-full">
                     <thead>
                         <tr>
-                            <th class="w-1/6"></th>
-                            <th class="w-4/6"></th>
-                            <th class="w-1/6 text-right">公開状態</th>
-                            <th class=""></th>
-                            <th class=""></th>
+                            <th class="w-1/12"></th>
+                            <th class="w-7/12"></th>
+                            <th class="w-2/12 text-right">公開状態</th>
+                            <th class="w-1/12"></th>
+                            <th class="w-1/12"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,12 +61,14 @@
                                     {!! Form::close() !!}
                                 @endif
                             </td>
-                            <td>
-                                <a href="{{ route('todo.edit', $todo->id) }}"><input type="submit" value="削除"></a>
+                            <td class="pb-4 text-center">
+                                <form method="get" action="{{ route('todo.edit', $todo->id) }}">
+                                    <button type="submit" class="p-1 bg-piq-green-dark text-white text-sm">編集</button>
+                                </form>
                             </td>
-                            <td>
+                            <td class="pb-4 text-center">
                                 {!! Form::open(['route' => ['todo.delete', $todo->id]]) !!}
-                                <input type="submit" value="削除">
+                                    <button type="submit" class="p-1 bg-piq-green-dark text-white text-sm">削除</button>
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -87,8 +77,21 @@
                 </table>
             </div>
 
-            <div>
-                <button><a href="{{ route('shareImg') }}">画像でシェアする</a></button>
+            <div class="flex justify-between items-center mb-2">
+                <a href="#" class="flex items-center h-7 px-4">
+                    <span class="text-sm">< 昨日のタスク</span>
+                </a>
+                <a href="#" class="flex items-center h-7 px-4">
+                    <span class="text-sm">明日のタスク ></span>
+                </a>
+            </div>
+
+            <div class="flex items-center justify-center mb-4">
+                <a href="" class="text-sm py-3 px-6 text-white bg-piq-green-dark rounded-3xl">タスク作成</a>
+            </div>
+
+            <div class="flex items-center justify-center mb-4">
+                <a href="{{ route('shareImg') }}" class="text-sm py-3 px-6 text-white bg-piq-green-dark rounded-3xl">画像でシェアする</a>
             </div>
 
         </div>

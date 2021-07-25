@@ -25,7 +25,7 @@
                     <label for="content" class="block text-gray-700 text-sm font-bold mb-2">タスクの内容</label>
                     <textarea name="content" id="content" cols="50" rows="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow">{{ $todo->content }}</textarea>
                 </div>
-                <div class="mb-5 flex items-center justify-between">
+                <div class="mb-8 flex items-center justify-between">
                     <label for="date" class="text-gray-700 text-sm font-bold">実施日</label>
                     <input type="date" name="date" id="date" value="{{ $todo->target_date }}">
                 </div>

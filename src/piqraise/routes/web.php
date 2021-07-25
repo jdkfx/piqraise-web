@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('pages.index');
+})->name('index');
+
 // Auth Twitter
 Route::get('/signup/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('signup');
 Route::get('/login/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('login');
