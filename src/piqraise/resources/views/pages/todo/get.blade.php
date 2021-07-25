@@ -40,6 +40,7 @@
                                 {!! Form::close() !!}
                             @endif
                             <br>
+                            <a href="{{ route('todo.edit', $todo->id) }}"><input type="submit" value="削除"></a>
                             {!! Form::open(['route' => ['todo.delete', $todo->id]]) !!}
                             <input type="submit" value="削除">
                             {!! Form::close() !!}
