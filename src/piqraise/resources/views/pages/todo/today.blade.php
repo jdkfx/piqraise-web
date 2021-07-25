@@ -33,6 +33,10 @@
                     </thead>
                     <tbody>
                         @foreach ($todos as $todo)
+                        @php
+                            $userId = $todo->user_id;
+                            $day = $todo->target_date;
+                        @endphp
                         <tr>
                             <td class="pb-4">
                                 @if ($todo->done_flag)
@@ -82,6 +86,11 @@
                     </tbody>
                 </table>
             </div>
+
+            <div>
+                <button><a href="{{ route('shareImg', [$userId, $day]) }}">画像でシェアする</a></button>
+            </div>
+
         </div>
     </div>
 @endsection
