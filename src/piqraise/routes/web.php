@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.index');
-})->name('index');
-
 Route::get('/ogp', 'OgpController@createOgpImg');
 
 // Auth Twitter
@@ -30,6 +25,7 @@ Route::get('/login/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('
 //     Route::get('/{date}', 'TodosController@get');
 //     Route::get('/todo', 'TodosController@create');
 //     Route::post('/todo', 'TodosController@store')->name('todo.create');
+//     Route::post('/{id}/delete', 'TodosController@delete')->name('todo.delete');
 //     Route::post('/{id}/public', 'TodosController@updatePublicFlagTrue');
 //     Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse');
 //     Route::post('/{id}/done', 'TodosController@updateDoneFlagTrue')->name('todo.updateDoneFlagTrue');
@@ -44,5 +40,7 @@ Route::post('/{id}/public', 'TodosController@updatePublicFlagTrue')->name('todo.
 Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse')->name('todo.updatePublicFlagFalse');
 Route::post('/{id}/done', 'TodosController@updateDoneFlagTrue')->name('todo.updateDoneFlagTrue');
 Route::post('/{id}/doing', 'TodosController@updateDoneFlagFalse')->name('todo.updateDoneFlagFalse');
+Route::get('/{id}/edit', 'TodosController@edit')->name('todo.edit');
+Route::post('/{id}/edit', 'TodosController@update');
 
 Route::get('/{userId}/{date}', 'TodosController@getPublic');
