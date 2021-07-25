@@ -21,7 +21,7 @@ Route::get('/logout/auth/twitter', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/today', 'TodosController@today');
-    Route::get('/{date}', 'TodosController@get');
+    Route::get('/{date}', 'TodosController@get')->name('todo.date');
     Route::get('/todo', 'TodosController@create');
     Route::post('/todo', 'TodosController@store')->name('todo.create');
     Route::post('/{id}/edit', 'TodosController@edit')->name('todo.edit');
