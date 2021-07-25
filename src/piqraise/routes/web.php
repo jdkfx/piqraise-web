@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/{id}/private', 'TodosController@updatePublicFlagFalse')->name('todo.updatePublicFlagFalse');
     Route::post('/{id}/done', 'TodosController@updateDoneFlagTrue')->name('todo.updateDoneFlagTrue');
     Route::post('/{id}/doing', 'TodosController@updateDoneFlagFalse')->name('todo.updateDoneFlagFalse');
-    Route::get('/{userId}/{date}/share.png', 'OgpController@createOgpImg')->name('shareImg');
+    Route::get('/todo/{userId}/{date}/share.png', 'OgpController@createOgpImg')->name('shareImg');
 });
 
 Route::get('/{userId}/{date}', 'TodosController@getPublic');
