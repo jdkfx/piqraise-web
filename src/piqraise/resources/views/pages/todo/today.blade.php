@@ -34,8 +34,8 @@
                     <tbody>
                         @foreach ($todos as $todo)
                         @php
+                            $day = \Carbon\Carbon::today()->format('Ymd');
                             $userId = $todo->user_id;
-                            $day = $todo->target_date;
                         @endphp
                         <tr>
                             <td class="pb-4">
