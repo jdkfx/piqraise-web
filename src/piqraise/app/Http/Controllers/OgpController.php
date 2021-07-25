@@ -67,24 +67,22 @@ class OgpController extends Controller
 
             if ($todo->done_flag == true) {
                 imagecopyresampled($image, $doneIcon, 60, $imgy, 0, 0, $donenewwidth, $donenewheight, $doneix, $doneiy);
-                imagedestroy($doneIcon);
 
                 $doneTaskStr = $todo->content;
                 $parts = $this->createParts($doneTaskStr, 20);
                 $this->drawParts($image, $parts, $w, $h, 100, $stry, 25, $font, $black);
 
                 $stry += 50;
-                $imgy += 70;
+                $imgy += 50;
             } else {
                 imagecopyresampled($image, $doingIcon, 60, $imgy, 0, 0, $doingnewwidth, $doingnewheight, $doingix, $doingiy);
-                imagedestroy($doingIcon);
 
                 $doingTaskStr = $todo->content;
                 $parts = $this->createParts($doingTaskStr, 20);
                 $this->drawParts($image, $parts, $w, $h, 100, $stry, 25, $font, $black);
 
                 $stry += 50;
-                $imgy += 70;
+                $imgy += 50;
             }
 
             $i++;
@@ -103,7 +101,10 @@ class OgpController extends Controller
 
         ob_start();
         imagepng($image);
+        imagedestroy($doingIcon);
+        imagedestroy($doneIcon);
         imagedestroy($image);
+
         $content = ob_get_clean();
 
         return response($content)->header('Content-Type', 'image/png');
