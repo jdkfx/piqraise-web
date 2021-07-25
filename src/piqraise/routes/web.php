@@ -31,6 +31,11 @@ Route::get('/login/auth/twitter', 'Auth\AuthController@TwitterRedirect')->name('
 //     Route::post('/{id}/done', 'TodosController@updateDoneFlagTrue')->name('todo.updateDoneFlagTrue');
 //     Route::post('/{id}/doing', 'TodosController@updateDoneFlagFalse')->name('todo.updateDoneFlagFalse');
 // });
+
+Route::get('/', function () {
+    return view('pages.index');
+})->name('index');
+
 Route::get('/today', 'TodosController@today');
 Route::get('/{date}', 'TodosController@get');
 Route::get('/todo', 'TodosController@create');

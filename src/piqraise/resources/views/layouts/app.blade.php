@@ -15,7 +15,12 @@
 
     <body class="h-full flex flex-col">
         <header>
-            @include('commons.navbar')
+            @guest
+                @include('commons.navbar')
+            @endguest
+            @auth
+                @include('commons.navbar_logined')
+            @endauth
         </header>
 
         <main class="block flex-bottom">
