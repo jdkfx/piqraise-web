@@ -87,7 +87,7 @@
             </div>
 
             <div class="flex items-center justify-center mb-4">
-                <a href="" class="text-sm py-3 px-6 text-white bg-piq-green-dark rounded-3xl">タスク作成</a>
+                <a href="/todo" class="text-sm py-3 px-6 text-white bg-piq-green-dark rounded-3xl">タスク作成</a>
             </div>
 
             <div class="flex items-center justify-center mb-4">
