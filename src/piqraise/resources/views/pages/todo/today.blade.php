@@ -33,10 +33,10 @@
                     </thead>
                     <tbody>
                         @foreach ($todos as $todo)
-                        @php
-                            $day = \Carbon\Carbon::today()->format('Ymd');
+                        <!-- @php
                             $userId = $todo->user_id;
-                        @endphp
+                            $day = \Carbon\Carbon::today()->format('Ymd');
+                        @endphp -->
                         <tr>
                             <td class="pb-4">
                                 @if ($todo->done_flag)
@@ -88,7 +88,7 @@
             </div>
 
             <div>
-                <button><a href="{{ route('shareImg', [$userId, $day]) }}">画像でシェアする</a></button>
+                <button><a href="{{ route('shareImg') }}">画像でシェアする</a></button>
             </div>
 
         </div>
