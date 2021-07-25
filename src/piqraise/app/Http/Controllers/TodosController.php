@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoCreateRequest;
+use App\Http\Requests\TodoEditRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Todo;
@@ -20,9 +21,26 @@ class TodosController extends Controller
         return view('pages.todo.create');
     }
 
+    public function edit($id)
+    {
+        //$todo = Todo::where('user_id', Auth::id())->where('id', $id)->first();
+        $todo = Todo::where('user_id', 1)->where('id', $id)->first();
+        return view('pages.todo.edit', compact('todo'));
+    }
+
+    public function update(TodoEditRequest $request, $id)
+    {
+        //Todo::where('user_id', Auth::id())->where('id', $id)->update([
+        Todo::where('user_id', 1)->where('id', $id)->update([
+            'target_date' => $request->date,
+            'content' => $request->content,
+        ]);
+        return redirect()->back();
+    }
+
     public function store(TodoCreateRequest $request)
     {
-        $todo = Todo::create([
+        Todo::create([
             // 'user_id' => Auth::id(),
             'user_id' => 1,
             'done_flag' => false,
@@ -30,7 +48,7 @@ class TodosController extends Controller
             'content' => $request->content,
             'target_date' => $request->date,
         ]);
-        return redirect(route('index'))->with('success', __('created'));
+        return redirect()->back();
     }
 
     // MEMO: あえての物理削除
