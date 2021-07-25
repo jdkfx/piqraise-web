@@ -96,8 +96,19 @@ class OgpController extends Controller
         // $parts = $this->createParts($userName, 255);
         // $this->drawParts($image, $parts, $w, $h, 80, 330, 15, $font, $black);
 
-        // パーセンテージを表示させる
-        // $perOfComplete = '50';
+        $doneTaskCount = 0;
+        foreach ($todos as $todo) {
+            if ($todo->done_flag == true) {
+                $doneTaskCount++;
+            }
+        }
+        $perOfComplete = $doneTaskCount / $todos->count();
+        $green = imagecolorallocate($image, 119, 178, 85);
+        $blue = imagecolorallocate($image, 34, 102, 153);
+        imagerectangle($image, 0, 350, 640 * $perOfComplete, 360, $green);
+        imagefill($image, 1, 351, $green);
+        imagerectangle($image, 640 * $perOfComplete, 350, 640, 360, $blue);
+        imagefill($image, 639, 359, $blue);
 
         ob_start();
         imagepng($image);
