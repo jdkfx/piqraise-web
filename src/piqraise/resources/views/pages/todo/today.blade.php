@@ -15,6 +15,7 @@
                             <th class="w-1/6"></th>
                             <th class="w-4/6"></th>
                             <th class="w-1/6 text-right">公開状態</th>
+                            <th class=""></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,11 @@
                                         </div>
                                     {!! Form::close() !!}
                                 @endif
+                            </td>
+                            <td>
+                                {!! Form::open(['route' => ['todo.delete', $todo->id]]) !!}
+                                <input type="submit" value="削除">
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                         @endforeach

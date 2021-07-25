@@ -33,6 +33,13 @@ class TodosController extends Controller
         return redirect(route('index'))->with('success', __('created'));
     }
 
+    // MEMO: あえての物理削除
+    public function delete($id) {
+        //Todo::where('user_id', Auth::id())->where('id', $id)->delete();
+        Todo::where('user_id', 1)->where('id', $id)->delete();
+        return redirect()->back();
+    }
+
     public function today()
     {
         // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();

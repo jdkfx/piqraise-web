@@ -40,6 +40,10 @@
                                 {!! Form::close() !!}
                             @endif
                             <br>
+                            {!! Form::open(['route' => ['todo.delete', $todo->id]]) !!}
+                            <input type="submit" value="削除">
+                            {!! Form::close() !!}
+                            <br>
                         @endforeach
                     </div>
                 </div>
