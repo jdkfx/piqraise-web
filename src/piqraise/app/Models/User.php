@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected array $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'twitter_name',
@@ -19,12 +19,12 @@ class User extends Authenticatable
         'token',
     ];
 
-    protected array $hidden = [
+    protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected array $casts = [
+    protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
