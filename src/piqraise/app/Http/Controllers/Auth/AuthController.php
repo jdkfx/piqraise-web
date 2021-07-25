@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect('/');
         }
 
-        return redirect('/' . $user->nickname);
+        return redirect('/today');
     }
 
     public function getLogout()
