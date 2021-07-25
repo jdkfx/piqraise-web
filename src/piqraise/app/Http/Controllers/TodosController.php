@@ -52,7 +52,11 @@ class TodosController extends Controller
     public function today()
     {
         $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
-        return view('pages.todo.today', compact('todos'));
+        $date = date_parse(Carbon::today());
+        $year = $date['year'];
+        $month = $date['month'];
+        $day = $date['day'];
+        return view('pages.todo.today', compact('todos', 'year', 'month', 'day'));
     }
 
     // TODO: perry 後でserviceらへんでまとめる
