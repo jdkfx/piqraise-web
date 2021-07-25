@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TodosController extends Controller
 {
-    // 未認証のユーザーをログインページに移動させる
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
 
     public function create() {
         return view('pages.todo.create');
@@ -23,15 +18,13 @@ class TodosController extends Controller
 
     public function edit($id)
     {
-        //$todo = Todo::where('user_id', Auth::id())->where('id', $id)->first();
-        $todo = Todo::where('user_id', 1)->where('id', $id)->first();
+        $todo = Todo::where('user_id', Auth::id())->where('id', $id)->first();
         return view('pages.todo.edit', compact('todo'));
     }
 
     public function update(TodoEditRequest $request, $id)
     {
-        //Todo::where('user_id', Auth::id())->where('id', $id)->update([
-        Todo::where('user_id', 1)->where('id', $id)->update([
+        Todo::where('user_id', Auth::id())->where('id', $id)->update([
             'target_date' => $request->date,
             'content' => $request->content,
         ]);
@@ -41,8 +34,7 @@ class TodosController extends Controller
     public function store(TodoCreateRequest $request)
     {
         Todo::create([
-            // 'user_id' => Auth::id(),
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'done_flag' => false,
             'public_flag' => $request->public_flag,
             'content' => $request->content,
@@ -53,23 +45,20 @@ class TodosController extends Controller
 
     // MEMO: あえての物理削除
     public function delete($id) {
-        //Todo::where('user_id', Auth::id())->where('id', $id)->delete();
-        Todo::where('user_id', 1)->where('id', $id)->delete();
+        Todo::where('user_id', Auth::id())->where('id', $id)->delete();
         return redirect()->back();
     }
 
     public function today()
     {
-        // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
-        $todos = Todo::where('user_id', 1)->whereDate('target_date', Carbon::today())->get();
+        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', Carbon::today())->get();
         return view('pages.todo.today', compact('todos'));
     }
 
     // TODO: perry 後でserviceらへんでまとめる
     public function get($date)
     {
-        // $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', $date)->get();
-        $todos = Todo::where('user_id', 1)->whereDate('target_date', $date)->get();
+        $todos = Todo::where('user_id', Auth::id())->whereDate('target_date', $date)->get();
         $date = date_parse($date);
         $year = $date['year'];
         $month = $date['month'];
@@ -92,29 +81,25 @@ class TodosController extends Controller
 
     public function updatePublicFlagTrue($id)
     {
-        // Todo::where('user_id', Auth::id())->where('id', $id)->update(['public_flag' => true]);
-        Todo::where('user_id', 1)->where('id', $id)->update(['public_flag' => true]);
+        Todo::where('user_id', Auth::id())->where('id', $id)->update(['public_flag' => true]);
         return redirect()->back();
     }
 
     public function updatePublicFlagFalse($id)
     {
-        // Todo::where('user_id', Auth::id())->where('id', $id)->update(['public_flag' => false]);
-        Todo::where('user_id', 1)->where('id', $id)->update(['public_flag' => false]);
+        Todo::where('user_id', Auth::id())->where('id', $id)->update(['public_flag' => false]);
         return redirect()->back();
     }
 
     public function updateDoneFlagTrue($id)
     {
-        // Todo::where('user_id', Auth::id())->where('id', $id)->update(['done_flag' => true]);
-        Todo::where('user_id', 1)->where('id', $id)->update(['done_flag' => true]);
+        Todo::where('user_id', Auth::id())->where('id', $id)->update(['done_flag' => true]);
         return redirect()->back();
     }
 
     public function updateDoneFlagFalse($id)
     {
-        // Todo::where('user_id', Auth::id())->where('id', $id)->update(['done_flag' => false]);
-        Todo::where('user_id', 1)->where('id', $id)->update(['done_flag' => false]);
+        Todo::where('user_id', Auth::id())->where('id', $id)->update(['done_flag' => false]);
         return redirect()->back();
     }
 }
